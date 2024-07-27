@@ -26,6 +26,12 @@
         footer {
             margin-top: auto;
         }
+        /* Add gap between cards on mobile view */
+        
+        .card {
+            margin-bottom: 1.5rem;
+            /* Adjust as needed */
+        }
     </style>
 </head>
 
@@ -34,7 +40,7 @@
     <div class="container my-4">
         <div class="row">
             <!-- Not Done Tasks Card -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-header bg-danger text-white">
                         गरेको छैन
@@ -49,7 +55,7 @@
                 </div>
             </div>
             <!-- In Progress Tasks Card -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-header bg-warning text-white">
                         गर्दै
@@ -64,7 +70,7 @@
                 </div>
             </div>
             <!-- Done Tasks Card -->
-            <div class="col-md-4">
+            <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-header bg-success text-white">
                         गरियो

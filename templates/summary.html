@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .content {
+            flex: 1;
+        }
+        
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'nav.html' %}
+    <div class="container my-4">
+        <div class="row">
+            <!-- Not Done Tasks Card -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-danger text-white">
+                        गरेको छैन
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for task in not_done_tasks %}
+                        <li class="list-group-item">{{ task.name }}</li>
+                        {% empty %}
+                        <li class="list-group-item">No tasks found</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- In Progress Tasks Card -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-warning text-white">
+                        गर्दै
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for task in in_progress_tasks %}
+                        <li class="list-group-item">{{ task.name }}</li>
+                        {% empty %}
+                        <li class="list-group-item">No tasks found</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <!-- Done Tasks Card -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        गरियो
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for task in done_tasks %}
+                        <li class="list-group-item">{{ task.name }}</li>
+                        {% empty %}
+                        <li class="list-group-item">No tasks found</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+</body>
+{% include 'footer.html' %}
+
+</html>

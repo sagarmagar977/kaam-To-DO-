@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+        .navbar-nav .nav-link {
+            border: 1px solid #ddd;
+            /* Border color */
+            border-radius: 25px;
+            /* Rounded corners */
+            padding: 8px 16px;
+            /* Padding for better button appearance */
+            margin: 0 5px;
+            /* Margin between buttons */
+        }
+        
+        .navbar-nav {
+            flex-direction: row;
+            /* Align items in a row */
+            justify-content: center;
+            /* Center-align the items */
+            width: 100%;
+            /* Full width to center-align */
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: #f8f9fa;
+            /* Background color for the active link */
+            border-color: #007bff;
+            /* Border color for the active link */
+        }
+        
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: green;
+        }
+        
+        .nav-link.active {
+            color: blue;
+            /* Adjust the color for the active link if needed */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <div class="container-fluid">
+            {% load static %}
+            <a class="navbar-brand" style="font-weight: bold;" href="{% url 'home' %}">
+                <img src="{% static 'images/kaam_logo.jpg' %}" alt="काम" style="height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+
+                    {% if request.path == '/' %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/create/' %}active{% endif %}" href="{% url 'create' %}">काम दर्ता 
+                            गर्नुहोस्</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/deleteall/' %}active{% endif %}" href="#" onclick="confirmDelete(event)">
+                            सबै काम मेटाउनुहोस्
+                        </a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+<script>
+    function confirmDelete(event) {
+        // Prevent the default action of the link
+        event.preventDefault();
+
+        // Show the confirmation dialog
+        if (confirm("के तपाइँ निश्चित हुनुहुन्छ कि तपाइँ सबै कार्यहरू मेटाउन चाहनुहुन्छ?")) {
+            // Redirect to the delete all URL if confirmed
+            window.location.href = "{% url 'deleteall' %}";
+        }
+    }
+</script>
+
+
+</html>
